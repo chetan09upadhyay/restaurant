@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Details</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+    <div class="reservation-container">
+        <h1>Your Reservation Details</h1>
+        <div class="reservation-details">
+            <p><strong>Name:</strong> <span id="display-name"></span></p>
+            <p><strong>Phone:</strong> <span id="display-phone"></span></p>
+            <p><strong>Number of People:</strong> <span id="display-person"></span></p>
+            <p><strong>Date:</strong> <span id="display-reservation-date"></span></p>
+            <p><strong>Time:</strong> <span id="display-time"></span></p>
+            <p><strong>Message:</strong> <span id="display-message"></span></p>
+        </div>
+        <button class="btn btn-secondary" onclick="clearReservation()">
+            <span class="text text-1">Clear Reservation</span>
+            <span class="text text-2">Clear Reservation</span>
+        </button>
+        <a class="btn btn-secondary" href="/">
+            <span class="text text-1 text-3"  >Go to Home page</span>
+            <span class="text text-2 text-3">Go to Home page</span>
+        </a>
+    </div>
+
+    <script>
+        // Retrieve reservation data from localStorage
+        const reservation = JSON.parse(localStorage.getItem('reservation'));
+
+        if (reservation) {
+            document.getElementById('display-name').textContent = reservation.name;
+            document.getElementById('display-phone').textContent = reservation.phone;
+            document.getElementById('display-person').textContent = reservation.person;
+            document.getElementById('display-reservation-date').textContent = reservation.reservationDate;
+            document.getElementById('display-time').textContent = reservation.time;
+            document.getElementById('display-message').textContent = reservation.message;
+        } else {
+            document.querySelector('.reservation-details').innerHTML = '<p>No reservation found.</p>';
+
+        }
+
+        // Function to clear reservation from localStorage
+        function clearReservation() {
+            localStorage.removeItem('reservation');
+            window.location.reload(); // Refresh the page after clearing the reservation
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
